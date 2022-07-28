@@ -2,12 +2,18 @@
 
 #include<iostream>
 #include<string>
+#include <vector>
 using namespace std;
 
 extern const unsigned short LIMIT_GUESSES;
 
 extern string secret_word;
 extern string forca_status;
+extern ushort missing_letters;
+extern ushort wrong_guesses_count;
+extern ushort missing_letters;
+extern vector<char> list_wrong_letters;
+extern vector<char> list_correct_letters;
 
 /**
  * @brief This function just prints the Title of the game 'Jogo da Forca'
@@ -44,12 +50,12 @@ void print_forca_status();
 
 /**
  * @brief Checks if the guessed letter is part of the secret word
- * 
+ * if is it  updates the forca_status 
  */
-bool is_letter_in_secret_word();
+bool is_letter_in_secret_word(char guessed_letter);
 
 /**
  * @brief Checks in both list_wrong_letters and list_correct_letters
  * if the guessed letter was used already
  */
-bool was_letter_used();
+bool was_letter_used(char guessed_letter);

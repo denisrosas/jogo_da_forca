@@ -1,12 +1,12 @@
 #include<iostream>
 #include<string>
 #include "libforca.h"
+//#include "libforca.cpp"
 using namespace std;
 
 int main(){
 
-    char guess_letter = ' ';
-    ushort wrong_guesses_count = 0;
+    char guessed_letter = ' ';
 
     print_game_title();
 
@@ -20,7 +20,7 @@ int main(){
     cout << "Secret word: " << secret_word << endl;
 
     start_forca_status();
-    ushort missing_letters = secret_word.length();
+    missing_letters = secret_word.length();
 
     while ((wrong_guesses_count<LIMIT_GUESSES) && (missing_letters > 0)){
 
@@ -28,30 +28,38 @@ int main(){
 
         print_forca_status();
 
-        cout << "Please input a letter you guess it's in the secret word:";
-        cin >> guess_letter;
+        cout << "Please input a letter you guess it's in the secret word:" << endl;
+        cin >> guessed_letter;
 
         //check if it's a valid letter and convert to Upper case
-        if (!isalpha(guess_letter)){
+        if (!isalpha(guessed_letter)){
             cout << "Invalid letter!" << endl << endl;
             continue;
         } else{
-            guess_letter = (char) toupper(guess_letter);
+            guessed_letter = (char) toupper(guessed_letter);
         }
 
+        if (was_letter_used(guessed_letter)){
+            cout << "Letter used already" << endl << endl;
+            continue;
+        } 
 
+        if (is_letter_in_secret_word(guessed_letter)){
+            cout << "Good guess!!" << endl << endl;
+            list_correct_letters.push_back(guessed_letter);
+        } else{
+            list_wrong_letters.push_back(guessed_letter);
+            wrong_guesses_count++;
+            cout << "Letter not in secret word. You have used " << wrong_guesses_count << 
+            " guesses of " << LIMIT_GUESSES << "" << endl << endl;
+        }
 
-        // check if letter has already been used
-
-        //check if letter is in word
-        //if it is, change state force and congratulations and decrease missing_letters
-        //if not, put it in the list of wrong letters and increase the number of wrong attempts
-
-        //
     }
 
-    //if missing_letters == 0 -> GANHOU
-    //else "Sorry, you reached the limit of guesses"
+    if (missing_letters == 0)
+        cout << "Congratulations! You've got the word correct" << endl << endl;
+    else
+        cout << "Sorry, you reached the limit of guesses. Try again!" << endl << endl;
 
 }
 

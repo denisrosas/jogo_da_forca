@@ -3,14 +3,15 @@
 #include "libforca.h"
 #include <fstream>
 #include <vector>
-#include <map>
 #include <cstdlib> 
 #include <ctime>
 
 using namespace std;
 
 //Global Variables
-const unsigned short LIMIT_GUESSES = 10;
+const unsigned short LIMIT_GUESSES = 8;
+ushort missing_letters = 0;
+ushort wrong_guesses_count = 0;
 const string words_filename = "paises.txt";
 
 string secret_word = "";
@@ -83,6 +84,32 @@ void print_forca_status(){
     cout << endl;
 }
 
-bool is_letter_in_secret_word(){
+bool is_letter_in_secret_word(char guessed_letter){
+    bool result = false;
+    ushort index = 0;
+
+    for(char letter : secret_word){
+        if(letter == guessed_letter){
+            result = true;
+            missing_letters--;
+            forca_status[index] = guessed_letter;
+        }
+        index++;
+    }
+    return result;
+}
+
+bool was_letter_used(char guessed_letter){
+
+    for(char letter : list_wrong_letters){
+        if (letter == guessed_letter) 
+            return true;
+    }
+
+    for(char letter : list_correct_letters){
+        if (letter == guessed_letter) 
+            return true;
+    }
+
     return false;
 }
