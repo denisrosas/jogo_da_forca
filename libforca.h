@@ -15,15 +15,41 @@ extern string forca_status;
  */
 void print_game_title();
 
+/**
+ * @brief Reads all words from words_filename and randomly return one of them
+ * 
+ * @return string 
+ */
+string read_words_from_file_and_raffle();
 
-string read_words_from_file_and_rafle();
+/**
+ * @brief Prints the list of wrong letters used already
+ * 
+ */
+void print_wrong_letters_list();
 
-void raffle_word();
+/**
+ * @brief Adds a  '_' for every letter of secret_word as the user didn't 
+ * guess any letter yet
+ * 
+ */
+void start_forca_status();
 
-bool print_wrong_words_list();
+/**
+ * @brief Prints the current status of the forca, showing just the letters 
+ * of the secret word that the player already entered. For example:
+ * "A _ E _ A N _ A" -> for ALEMANHA. 
+ */
+void print_forca_status();
 
-bool print_forca_status();
-
-bool letter_has_been_used();
-
+/**
+ * @brief Checks if the guessed letter is part of the secret word
+ * 
+ */
 bool is_letter_in_secret_word();
+
+/**
+ * @brief Checks in both list_wrong_letters and list_correct_letters
+ * if the guessed letter was used already
+ */
+bool was_letter_used();

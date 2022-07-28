@@ -3,6 +3,7 @@
 #include "libforca.h"
 #include <fstream>
 #include <vector>
+#include <map>
 #include <cstdlib> 
 #include <ctime>
 
@@ -16,6 +17,8 @@ string secret_word = "";
 string forca_status = "";
 
 vector<string> words_from_file;
+vector<char> list_wrong_letters;
+vector<char> list_correct_letters;
 
 void print_game_title(){
 
@@ -24,7 +27,7 @@ void print_game_title(){
 
 }
 
-string read_words_from_file_and_rafle(){
+string read_words_from_file_and_raffle(){
 
     ifstream file;
     string buffer;
@@ -51,22 +54,33 @@ string read_words_from_file_and_rafle(){
 }
 
 
-bool print_wrong_words_list(){
+void print_wrong_letters_list(){
 
-    return false;
+    cout << "List of wrong guessed letters: ";
+
+    if(list_wrong_letters.size() == 0){
+        cout << "(EMPTY)";
+    } else {
+        for(char letter : list_wrong_letters){
+            cout << letter << ", ";
+        }
+    }
+    cout << endl;
 }
 
-bool print_forca_status(){
-    // for (char letter : forca_status) {
-    //     cout << letra << " ";
-    // }
-
-    // cout << endl;
-    return false;
+void start_forca_status(){
+    for(char letter : secret_word){
+        forca_status.push_back('_');
+    }
 }
 
-bool letter_has_been_used(){
-    return false;
+void print_forca_status(){
+    cout << "Secret word: ";
+    for (char letter : forca_status) {
+        cout << letter << " ";
+    }
+
+    cout << endl;
 }
 
 bool is_letter_in_secret_word(){

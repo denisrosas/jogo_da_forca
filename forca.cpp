@@ -5,28 +5,42 @@ using namespace std;
 
 int main(){
 
-    //TODO print game title
+    char guess_letter = ' ';
+    ushort wrong_guesses_count = 0;
 
-    //TODO open file, read and fill vector
+    print_game_title();
 
-    //raffle_word
+    secret_word = read_words_from_file_and_raffle();
 
-    //TODO inicia variaveis
+    if(secret_word.length() == 0){
+        cout << "There is a problem with the input words file. Ending game..." << endl;
+        return 0;
+    }
 
-    //while loop ((wrong_guesses_count<LIMIT_GUESSES) && (missing_letters > 0)){
+    cout << "Secret word: " << secret_word << endl;
 
-        char guess = ' ';
+    start_forca_status();
+    ushort missing_letters = secret_word.length();
 
-        print_game_title();
+    while ((wrong_guesses_count<LIMIT_GUESSES) && (missing_letters > 0)){
 
-        secret_word = read_words_from_file_and_rafle();
+        print_wrong_letters_list();
 
-        cout << "secret word: = " << secret_word << endl;
-        
-        //Print typed letters
-        //Print forca_status
-        // Ask user to enter input and wait for reading
-        // confirm if letter is valid, and change to uppercase
+        print_forca_status();
+
+        cout << "Please input a letter you guess it's in the secret word:";
+        cin >> guess_letter;
+
+        //check if it's a valid letter and convert to Upper case
+        if (!isalpha(guess_letter)){
+            cout << "Invalid letter!" << endl << endl;
+            continue;
+        } else{
+            guess_letter = (char) toupper(guess_letter);
+        }
+
+
+
         // check if letter has already been used
 
         //check if letter is in word
@@ -34,7 +48,7 @@ int main(){
         //if not, put it in the list of wrong letters and increase the number of wrong attempts
 
         //
-    //}
+    }
 
     //if missing_letters == 0 -> GANHOU
     //else "Sorry, you reached the limit of guesses"

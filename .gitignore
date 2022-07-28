@@ -1,2 +1,4 @@
 .vscode/*
 jogo_da_forca
+forca.o
+libforca.o
