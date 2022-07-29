@@ -41,20 +41,27 @@ string read_words_from_file_and_raffle(){
 
     ushort nwords = 0;
 
-    file >> nwords; //first line of the file should contain the number of words
-    if (!nwords) return ""; //returns an empty string if number is 0
+    if(file.is_open()){
 
-    for (ushort i = 0; i < nwords; i++)
-    {
-        file >> buffer;
-        if(buffer.size()>0)  words_from_file.push_back(buffer);
+        file >> nwords; //first line of the file should contain the number of words
+        if (!nwords) return ""; //returns an empty string if number is 0
 
+        for (ushort i = 0; i < nwords; i++)
+        {
+            file >> buffer;
+            if(buffer.size()>0)  words_from_file.push_back(buffer);
+
+        }
+
+        // now we'll randomly select a number between 0 and nwords and return its 
+        // position on words_from_file
+        srand(time(NULL)); 
+        return words_from_file.at( rand()%nwords );
+
+        file.close();
     }
 
-    // now we'll randomly select a number between 0 and nwords and return its 
-    // position on words_from_file
-    srand(time(NULL)); 
-    return words_from_file.at( rand()%nwords );
+    return "";
 }
 
 
