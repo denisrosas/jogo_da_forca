@@ -5,6 +5,8 @@ The code reads from countries.txt. It expect he first line to be a number of the
 It reads all words from the file and raffles one to be the secret word.
 Then the user can start guessing letters that are on this word.
 
+![Alt text](screenshot/screenshot.png?raw=true "Screenshot")
+
 Pre-requisites:
 You need g++ compiler or you should change the compiler in the makefile
 
