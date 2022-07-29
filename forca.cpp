@@ -38,7 +38,8 @@ int main(){
 
         //check if the tiped letter was previously used
         if (was_letter_used(guessed_letter)){
-            cout << "Letter used already" << endl << endl;
+            cout << "Letter used already. You have used " << wrong_guesses_count << 
+            " guesses of " << LIMIT_GUESSES << "" << endl << endl;
             continue;
         } 
 
