@@ -9,10 +9,10 @@
 using namespace std;
 
 //Global Variables
-const unsigned short LIMIT_GUESSES = 8;
+const unsigned short LIMIT_GUESSES = 5;
 ushort missing_letters = 0;
 ushort wrong_guesses_count = 0;
-const string words_filename = "paises.txt";
+const string words_filename = "countries.txt";
 
 string secret_word = "";
 string forca_status = "";
@@ -23,8 +23,12 @@ vector<char> list_correct_letters;
 
 void print_game_title(){
 
-    system("figlet -c Jogo da Forca");
-    cout << endl << endl;
+    cout << "           _____                   _        ____                      " << endl;
+    cout << "          |  ___|__  _ __ ___ __ _( )___   / ___| __ _ _ __ ___   ___ " << endl;
+    cout << "          | |_ / _ \\| '__/ __/ _` |// __| | |  _ / _` | '_ ` _ \\ / _ \\" << endl;
+    cout << "          |  _| (_) | | | (_| (_| | \\__ \\ | |_| | (_| | | | | | |  __/" << endl;
+    cout << "          |_|  \\___/|_|  \\___\\__,_| |___/  \\____|\\__,_|_| |_| |_|\\___|" << endl;
+    cout << "" << endl;
 
 }
 
@@ -36,7 +40,6 @@ string read_words_from_file_and_raffle(){
     file.open(words_filename);
 
     ushort nwords = 0;
-    cout << "size of nwords = " << sizeof(nwords) << endl;
 
     file >> nwords; //first line of the file should contain the number of words
     if (!nwords) return ""; //returns an empty string if number is 0
